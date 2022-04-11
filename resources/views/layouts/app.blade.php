@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles
+    <script src="/js/ckeditor.js"></script>
+    <script src="/js/uploadAdapter.js"></script>
 
+    <script src="/js/admin/ckeditor.js"></script>
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
