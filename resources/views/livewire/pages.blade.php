@@ -16,9 +16,10 @@
         <x-slot name="content">
             <div class="mt-4">
                 <x-jet-label for="title" value="{{ __('Title') }}" />
-                <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="title" />
+                <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="title"
+                    wire:change="" />
                 @error('title')
-                    <span class="error">{{ $message }}</span>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -34,7 +35,7 @@
                         placeholder="url-slug">
                 </div>
                 @error('slug')
-                    <span class="error">{{ $message }}</span>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -45,14 +46,29 @@
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white">
                         <div class="body-content" wire:ignore>
-                            <textarea class="ckeditor required w-full border-gray-300 rounded-md" wire:model="content"></textarea>
+                            <textarea class="form-textarea w-full" x-data x-init="ClassicEditor.create($el)
+                                .then(function(editor) {
+                                    editor.model.document.on('change:data', () => {
+                                        $dispatch('input', editor.getData())
+                                    });
+                                    Livewire.on('initCkeditor', () => {
+                                        editor.setData($el.value);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                });" wire:ignore wire:model="content"></textarea>
                         </div>
                     </div>
                 </div>
                 @error('content')
-                    <span class="error">{{ $message }}</span>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
+
+
+
+
 
 
             <div class="block mt-4">
