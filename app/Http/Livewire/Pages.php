@@ -64,6 +64,8 @@ class Pages extends Component
         $this->slug = null;
         $this->content = null;
         $this->emit('reset-content');
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
     /**
      * createShowModal
