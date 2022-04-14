@@ -46,18 +46,7 @@
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white">
                         <div class="body-content" wire:ignore>
-                            <textarea class="form-textarea w-full" x-data x-init="ClassicEditor.create($el)
-                                .then(function(editor) {
-                                    editor.model.document.on('change:data', () => {
-                                        $dispatch('input', editor.getData())
-                                    });
-                                    Livewire.on('initCkeditor', () => {
-                                        editor.setData($el.value);
-                                    });
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                });" wire:ignore wire:model="content"></textarea>
+                            <x-ckeditor field="content" />
                         </div>
                     </div>
                 </div>
@@ -71,10 +60,11 @@
 
 
 
+
+
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+
                 </label>
             </div>
         </x-slot>

@@ -63,7 +63,7 @@ class Pages extends Component
         $this->title = null;
         $this->slug = null;
         $this->content = null;
-        $this->emit('initCkeditor');
+        $this->emit('reset-content');
     }
     /**
      * createShowModal
