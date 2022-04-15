@@ -45,5 +45,5 @@ Route::group(['middleware' => [
     })->name('pages');
 });
 
-Route::get('/', Frontpage::class);
+
 Route::get('/page/{slug}', Frontpage::class)->name('page.show');
