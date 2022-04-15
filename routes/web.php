@@ -14,9 +14,9 @@ use App\Http\Livewire\Frontpage;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::prefix("upload")->group(function () {
     Route::post("ckimage", [UploadController::class, "ckImage"])->name("upload.ckImage");
