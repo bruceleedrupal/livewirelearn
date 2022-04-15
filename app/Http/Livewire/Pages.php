@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Page;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-
+use Livewire\WithPagination;
 
 class Pages extends Component
 {
@@ -17,9 +17,16 @@ class Pages extends Component
 
     public $modalFormVisible = false;
 
+    public $modelId;
+
+    public $modalDeleteVisible = false;
+
+    use WithPagination;
+
     public function render()
     {
-        return view('livewire.pages');
+        $data =  Page::paginate(5);
+        return view('livewire.pages', compact('data'));
     }
 
     public function create()
@@ -28,6 +35,22 @@ class Pages extends Component
         Page::create($this->modelData());
         $this->clearVars();
         $this->modalFormVisible = false;
+    }
+    public function update()
+    {
+        $this->validate();
+        $page = Page::find($this->modelId);
+        $page->update($this->modelData());
+        $this->clearVars();
+        $this->modalFormVisible = false;
+    }
+
+    public function delete()
+    {
+
+        Page::destroy($this->modelId);
+        $this->clearVars();
+        $this->modalDeleteVisible = false;
     }
 
     public function updatedTitle()
@@ -39,7 +62,7 @@ class Pages extends Component
     {
         return [
             'title' => 'required',
-            'slug' => ['required', Rule::unique('pages', 'slug')],
+            'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
             'content' => 'required',
         ];
     }
@@ -57,15 +80,39 @@ class Pages extends Component
         ];
     }
 
+    public function loadModel()
+    {
+        $this->clearValidation();
+        $page = Page::find($this->modelId);
+        $this->title = $page->title;
+        $this->slug = $page->slug;
+        $this->content = $page->content;
+        $this->syncEditor();
+    }
+
 
     public function clearVars()
     {
         $this->title = null;
         $this->slug = null;
         $this->content = null;
-        $this->emit('reset-content');
-        $this->resetErrorBag();
-        $this->resetValidation();
+        $this->modelId = null;
+        $this->syncEditor();
+        $this->clearValidation();
+    }
+
+
+
+    protected function syncEditor()
+    {
+        $this->emit('sync-content');
+    }
+
+    public function updateShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalFormVisible = true;
+        $this->loadModel();
     }
     /**
      * createShowModal
@@ -76,5 +123,17 @@ class Pages extends Component
     {
         $this->clearVars();
         $this->modalFormVisible = true;
+    }
+
+    /**
+     * createShowModal
+     *
+     * @return void
+     */
+    public function deleteShowModal($id)
+    {
+
+        $this->modelId = $id;
+        $this->modalDeleteVisible = true;
     }
 }

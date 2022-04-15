@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
-
+use App\Http\Livewire\Frontpage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,9 @@ use App\Http\Controllers\UploadController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::prefix("upload")->group(function () {
     Route::post("ckimage", [UploadController::class, "ckImage"])->name("upload.ckImage");
@@ -44,3 +44,6 @@ Route::group(['middleware' => [
         return view('admin.pages');
     })->name('pages');
 });
+
+Route::get('/', Frontpage::class);
+Route::get('/page/{slug}', Frontpage::class)->name('page.show');

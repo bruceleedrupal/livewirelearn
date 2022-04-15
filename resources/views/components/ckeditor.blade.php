@@ -1,10 +1,11 @@
 @props(['field'])
-<textarea class="form-textarea w-full" x-init="ClassicEditor.create($el)
+<textarea x-init="ClassicEditor.create($el, { extraPlugins: [UploadAdapterPlugin] })
     .then(function(editor) {
         editor.model.document.on('change:data', () => {
             $dispatch('input', editor.getData())
         });
-        $wire.on('reset-{{ $field }}', () => {
+        $wire.on('sync-{{ $field }}', () => {
+            console.log($el.value);
             editor.setData($el.value);
         });
     })
