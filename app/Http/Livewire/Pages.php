@@ -93,10 +93,7 @@ class Pages extends Component
 
     public function clearVars()
     {
-        $this->title = null;
-        $this->slug = null;
-        $this->content = null;
-        $this->modelId = null;
+        $this->reset();
         $this->syncEditor();
         $this->clearValidation();
     }
