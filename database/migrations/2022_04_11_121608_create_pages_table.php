@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->longText('content')->nullable();
+            $table->foreignId("cover_media_id")->nullable()->default(null)->references('id')->on('media')->onDelete('set null');
             $table->timestamps();
         });
     }

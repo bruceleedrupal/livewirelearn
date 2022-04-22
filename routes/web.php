@@ -47,3 +47,13 @@ Route::group(['middleware' => [
 
 
 Route::get('/page/{slug}', Frontpage::class)->name('page.show');
+
+Route::prefix("upload")->group(function () {
+    Route::post("ckimage", [UploadController::class, "ckImage"])->name("upload.ckImage");
+    Route::post("image", [UploadController::class, "storeImage"])->name("upload.storeImage"); //->middleware("auth");
+    Route::post("file", [UploadController::class, "storeFile"])->name("upload.storeFile");
+    Route::patch("chunk/{id}", [UploadController::class, "chunk"])->name("upload.chunk");
+    Route::get("/", [UploadController::class, "get"])->name("upload.get");
+    Route::delete("delete", [UploadController::class, "delete"])->name("upload.delete");
+    Route::get("upload", [UploadController::class, "upload"])->name("upload.upload");
+});

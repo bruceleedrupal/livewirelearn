@@ -26,6 +26,11 @@
     "dependencies": {
         "@alpinejs/collapse": "^3.9.6",
         "laravel-echo": "^1.11.7",
-        "pusher-js": "^7.0.6"
+        "pusher-js": "^7.0.6",
+        "filepond": "^4.30.3",
+        "filepond-plugin-file-validate-type": "^1.2.6",
+        "filepond-plugin-image-edit": "^1.6.3",
+        "filepond-plugin-image-preview": "^4.6.10",
+        "filepond-plugin-image-resize": "^2.0.10"
     }
 }

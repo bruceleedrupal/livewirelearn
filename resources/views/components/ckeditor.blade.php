@@ -5,7 +5,6 @@
             $dispatch('input', editor.getData())
         });
         $wire.on('sync-{{ $field }}', () => {
-            console.log($el.value);
             editor.setData($el.value);
         });
     })

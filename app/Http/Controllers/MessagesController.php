@@ -262,14 +262,17 @@ class MessagesController extends Controller
                 $q->where('ch_messages.from_id', Auth::user()->id)
                     ->orWhere('ch_messages.to_id', Auth::user()->id);
             })
-            ->where('users.id', '!=', Auth::user()->id)
+            ->where(function ($q) {
+                $q->where('users.id', '!=', Auth::user()->id);
+            })
+
             ->select('users.*', DB::raw('MAX(ch_messages.created_at) max_created_at'))
             ->orderBy('max_created_at', 'desc')
             ->groupBy('users.id')
             ->paginate($request->per_page ?? $this->perPage);
 
 
-        $users = User::where('users.id', '!=', Auth::user()->id)->paginate($request->per_page ?? $this->perPage);;
+
         $usersList = $users->items();
 
         if (count($usersList) > 0) {

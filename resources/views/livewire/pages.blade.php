@@ -81,7 +81,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="title" value="{{ __('Slug') }}" />
+                <x-jet-label for="slug" value="{{ __('Slug') }}" />
                 <div class="mt-1 flex rounded-md shadow-sm">
                     <span
                         class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -89,7 +89,7 @@
                     </span>
                     <input wire:model.debounce.800ms="slug" type="text"
                         class="form-input flex-1 block w-full border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                        placeholder="url-slug">
+                        placeholder="url-slug" id="slug">
                 </div>
                 @error('slug')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
@@ -99,7 +99,7 @@
 
 
             <div class="mt-4">
-                <x-jet-label for="content" value="{{ __('Content') }}" />
+                <x-jet-label value="{{ __('Content') }}" />
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white">
                         <div class="body-content" wire:ignore>
@@ -111,6 +111,22 @@
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
+
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Cover') }}" />
+                <div class="rounded-md shadow-sm">
+                    <div class="mt-1 bg-white">
+                        <div class="body-content" wire:ignore>
+                            <x-filepond field="cover_media_id" accept="image/*" />
+                        </div>
+                    </div>
+                </div>
+                @error('cover_media_id')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
+
+
 
 
 

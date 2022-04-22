@@ -68,7 +68,7 @@ CREATE TABLE `ch_messages` (
 
 LOCK TABLES `ch_messages` WRITE;
 /*!40000 ALTER TABLE `ch_messages` DISABLE KEYS */;
-INSERT INTO `ch_messages` VALUES (1658420357,'user',1,2,'dsafads',NULL,1,'2022-04-21 20:39:36','2022-04-21 21:25:08'),(2112251858,'user',1,2,'fds',NULL,1,'2022-04-21 20:31:16','2022-04-21 20:31:16'),(2228565058,'user',1,1,'df',NULL,1,'2022-04-21 20:31:51','2022-04-21 20:31:52'),(2514887409,'user',2,1,'','{\"new_name\":\"519b0d1c-b14f-457d-9dfc-0e80b9e5ab68.png\",\"old_name\":\"\\u4eba\\u8138\\u80fd\\u529b\\u6982\\u89c8_20190619192844.png\"}',1,'2022-04-21 21:25:25','2022-04-21 21:25:25');
+INSERT INTO `ch_messages` VALUES (1658420357,'user',1,2,'dsafads',NULL,1,'2022-04-21 20:39:36','2022-04-21 21:25:08'),(2009549656,'user',1,2,'','{\"new_name\":\"832e688e-0d83-42e8-94de-1869c670d9be.jpg\",\"old_name\":\"BlueberrySalad-1-768x768.jpg\"}',1,'2022-04-21 22:15:17','2022-04-21 22:37:08'),(2112251858,'user',1,2,'fds',NULL,1,'2022-04-21 20:31:16','2022-04-21 20:31:16'),(2228565058,'user',1,1,'df',NULL,1,'2022-04-21 20:31:51','2022-04-21 20:31:52'),(2514887409,'user',2,1,'','{\"new_name\":\"519b0d1c-b14f-457d-9dfc-0e80b9e5ab68.png\",\"old_name\":\"\\u4eba\\u8138\\u80fd\\u529b\\u6982\\u89c8_20190619192844.png\"}',1,'2022-04-21 21:25:25','2022-04-21 21:25:25');
 /*!40000 ALTER TABLE `ch_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,6 +102,32 @@ LOCK TABLES `failed_jobs` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `image_page_media`
+--
+
+DROP TABLE IF EXISTS `image_page_media`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `image_page_media` (
+  `media_id` bigint unsigned NOT NULL,
+  `page_id` bigint unsigned NOT NULL,
+  PRIMARY KEY (`media_id`,`page_id`),
+  KEY `image_page_media_page_id_foreign` (`page_id`),
+  CONSTRAINT `image_page_media_media_id_foreign` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `image_page_media_page_id_foreign` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `image_page_media`
+--
+
+LOCK TABLES `image_page_media` WRITE;
+/*!40000 ALTER TABLE `image_page_media` DISABLE KEYS */;
+/*!40000 ALTER TABLE `image_page_media` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `media`
 --
 
@@ -117,7 +143,7 @@ CREATE TABLE `media` (
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'file',
   `filename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +152,7 @@ CREATE TABLE `media` (
 
 LOCK TABLES `media` WRITE;
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (1,'2022/04/15/62590c7aeed00886.jpg',NULL,NULL,1,'image','BlueberrySalad-1-768x768.jpg');
+INSERT INTO `media` VALUES (1,'2022/04/15/62590c7aeed00886.jpg',NULL,NULL,1,'image','BlueberrySalad-1-768x768.jpg'),(5,'2022/04/22/62626b91489ee754.jpg',NULL,NULL,1,'image','BlueberrySalad-1-768x768.jpg');
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +168,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +177,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2014_10_12_200000_add_two_factor_columns_to_users_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2019_12_14_000001_create_personal_access_tokens_table',1),(6,'2020_05_21_100000_create_teams_table',1),(7,'2020_05_21_200000_create_team_user_table',1),(8,'2020_05_21_300000_create_team_invitations_table',1),(9,'2022_04_10_103802_create_sessions_table',1),(10,'2022_01_26_003724_create_media_table',2),(11,'2022_04_11_121608_create_pages_table',2),(12,'0000_00_00_000000_create_websockets_statistics_entries_table',3),(13,'2022_04_22_999999_add_active_status_to_users',4),(14,'2022_04_22_999999_add_avatar_to_users',4),(15,'2022_04_22_999999_add_dark_mode_to_users',4),(16,'2022_04_22_999999_add_messenger_color_to_users',4),(17,'2022_04_22_999999_create_favorites_table',4),(18,'2022_04_22_999999_create_messages_table',4);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2014_10_12_200000_add_two_factor_columns_to_users_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2019_12_14_000001_create_personal_access_tokens_table',1),(6,'2020_05_21_100000_create_teams_table',1),(7,'2020_05_21_200000_create_team_user_table',1),(8,'2020_05_21_300000_create_team_invitations_table',1),(9,'2022_04_10_103802_create_sessions_table',1),(10,'2022_01_26_003724_create_media_table',2),(11,'2022_04_11_121608_create_pages_table',2),(12,'0000_00_00_000000_create_websockets_statistics_entries_table',3),(13,'2022_04_22_999999_add_active_status_to_users',4),(14,'2022_04_22_999999_add_avatar_to_users',4),(15,'2022_04_22_999999_add_dark_mode_to_users',4),(16,'2022_04_22_999999_add_messenger_color_to_users',4),(17,'2022_04_22_999999_create_favorites_table',4),(18,'2022_04_22_999999_create_messages_table',4),(19,'2022_03_04_095650_create_image_post_media_table',5),(20,'2022_04_22_071911_alter_table',5);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +195,10 @@ CREATE TABLE `pages` (
   `content` longtext COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `cover_media_id` bigint unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pages_cover_media_id_foreign` (`cover_media_id`),
+  CONSTRAINT `pages_cover_media_id_foreign` FOREIGN KEY (`cover_media_id`) REFERENCES `media` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,7 +208,7 @@ CREATE TABLE `pages` (
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-INSERT INTO `pages` VALUES (3,'dfdasfdasfasfas','dfdasfdasfasfasssssss','<p><img class=\"image_resized\" style=\"width:67.79%;\" src=\"/storage/2022/04/15/62590cf15dcb4473.jpg\"></p><p>fdsaf</p>','2022-04-11 20:09:41','2022-04-14 22:14:38'),(5,'cxvcaa','cxvcaa','<p>vcxvfdsafdsfstest</p>','2022-04-11 20:49:35','2022-04-14 22:07:30'),(6,'dasfads','dasfadsfdsaf','<p>fsdafasaaaa</p>','2022-04-11 20:50:56','2022-04-11 20:50:56'),(7,'dsfas','dsfasfdsafa','<p>new test</p><p>&nbsp;</p>','2022-04-11 20:53:39','2022-04-15 00:18:04'),(8,'dd','ddadd','<p>ssssssssaaaaaaaaaaaaaaaaaaa</p>','2022-04-11 20:53:50','2022-04-11 20:53:50'),(9,'测试2','测试2','<p>testfsdf</p>','2022-04-11 23:05:03','2022-04-11 23:05:03'),(10,'afas','afasfdsf','<p>fds</p>','2022-04-14 15:58:22','2022-04-14 15:58:22');
+INSERT INTO `pages` VALUES (3,'dfdasfdasfasfas','dfdasfdasfasfasssssss','<p><img class=\"image_resized\" style=\"width:67.79%;\" src=\"/storage/2022/04/15/62590cf15dcb4473.jpg\"></p><p>fdsaf</p>','2022-04-11 20:09:41','2022-04-14 22:14:38',NULL),(5,'cxvcaa','cxvcaa','<p>vcxvfdsafdsfstest</p>','2022-04-11 20:49:35','2022-04-14 22:07:30',NULL),(6,'dasfads','dasfadsfdsaf','<p>fsdafasaaaa</p>','2022-04-11 20:50:56','2022-04-11 20:50:56',NULL),(7,'dsfas','dsfasfdsafa','<p>new test</p><p>&nbsp;</p>','2022-04-11 20:53:39','2022-04-15 00:18:04',NULL),(8,'dd','ddadd','<p>ssssssssaaaaaaaaaaaaaaaaaaa</p>','2022-04-11 20:53:50','2022-04-11 20:53:50',NULL),(9,'测试2','测试2','<p>testfsdf</p>','2022-04-11 23:05:03','2022-04-11 23:05:03',NULL),(10,'afas','afasfdsf','<p>fds</p>','2022-04-14 15:58:22','2022-04-14 15:58:22',NULL);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +294,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('1JEV72ELr55KVj5Yu1rqw2U9bcSVaAkDIqEamuzx',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRGtFTkFrQXNhT3lueUVqNzZyanJZNHd3WXVRdlFNR0tmWjY4R3RDSyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNToiaHR0cDovL2xpdmV3aXJlbGVhcm4udGVzdC9jaGF0aWZ5LzIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRYWlpSUmU5cEFlS0xuQWkucmlENDBPeG9VcUhJNC5mVUREeWlicVQ0V2hZYm9Hd1FCT2JxdSI7fQ==',1650608012),('FjDxW3bFuUIQ4tUg7KL9lj2QEZppFZ4Sppyaajv0',2,'192.168.20.19','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoieEwxalZCbzQ4eGp5MndLRElNc2tKZkxlNjBVbkRLd3BQOWl1M2l3eSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9saXZld2lyZWxlYXJuLnRlc3QvY2hhdGlmeS8xIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9',1650607546);
+INSERT INTO `sessions` VALUES ('1JEV72ELr55KVj5Yu1rqw2U9bcSVaAkDIqEamuzx',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRGtFTkFrQXNhT3lueUVqNzZyanJZNHd3WXVRdlFNR0tmWjY4R3RDSyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovL2xpdmV3aXJlbGVhcm4udGVzdC9wYWdlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJFhaWlJSZTlwQWVLTG5BaS5yaUQ0ME94b1VxSEk0LmZVRER5aWJxVDRXaFlib0d3UUJPYnF1Ijt9',1650618081),('FjDxW3bFuUIQ4tUg7KL9lj2QEZppFZ4Sppyaajv0',2,'192.168.20.19','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoieEwxalZCbzQ4eGp5MndLRElNc2tKZkxlNjBVbkRLd3BQOWl1M2l3eSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9saXZld2lyZWxlYXJuLnRlc3QvY2hhdGlmeS8xIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9',1650612292);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,7 +420,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'brucelee','brucelee.drupal@gmail.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'i3ZF1YAx63dNiV04XMLTbJaJwakh4hVdPQQAnxyUlmwna4Tharzdd3dJwKbI',2,NULL,'2022-04-10 02:44:11','2022-04-10 03:40:48',0,'brucelee.jpeg',0,'#2180f3'),(2,'customer service','122077550@qq.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'b3Kq0u6YVG7YIsJKSWWtMvB7ORz8yFBxyztR8jNulNS26D7rRFAjqf0Eq7Nk',2,NULL,'2022-04-10 02:44:11','2022-04-21 22:05:46',1,'brucelee.jpeg',0,'#2180f3');
+INSERT INTO `users` VALUES (1,'brucelee','brucelee.drupal@gmail.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'i3ZF1YAx63dNiV04XMLTbJaJwakh4hVdPQQAnxyUlmwna4Tharzdd3dJwKbI',2,NULL,'2022-04-10 02:44:11','2022-04-21 23:24:51',0,'brucelee.jpeg',0,'#2180f3'),(2,'customer service','122077550@qq.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'b3Kq0u6YVG7YIsJKSWWtMvB7ORz8yFBxyztR8jNulNS26D7rRFAjqf0Eq7Nk',2,NULL,'2022-04-10 02:44:11','2022-04-21 22:37:07',1,'brucelee.jpeg',0,'#2180f3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,4 +461,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-22 14:14:28
+-- Dump completed on 2022-04-22 17:02:26
