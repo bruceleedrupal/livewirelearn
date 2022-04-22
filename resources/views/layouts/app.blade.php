@@ -48,6 +48,12 @@
     @stack('modals')
 
     @livewireScripts
+    <script>
+        window.addEventListener('event-notification', event => {
+            alert('Event', event.detail.eventName);
+        });
+    </script>
+
 </body>
 
 </html>

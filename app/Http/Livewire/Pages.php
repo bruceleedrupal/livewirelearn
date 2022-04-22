@@ -136,4 +136,12 @@ class Pages extends Component
         $this->modelId = $id;
         $this->modalDeleteVisible = true;
     }
+
+    public function dispatchEvent()
+    {
+        $this->dispatchBrowserEvent('event-notification', [
+            'eventName' => 'Sample Event',
+            'eventMessage' => 'Message',
+        ]);
+    }
 }

@@ -16,6 +16,63 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `ch_favorites`
+--
+
+DROP TABLE IF EXISTS `ch_favorites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ch_favorites` (
+  `id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `favorite_id` bigint NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ch_favorites`
+--
+
+LOCK TABLES `ch_favorites` WRITE;
+/*!40000 ALTER TABLE `ch_favorites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ch_favorites` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ch_messages`
+--
+
+DROP TABLE IF EXISTS `ch_messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ch_messages` (
+  `id` bigint NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from_id` bigint NOT NULL,
+  `to_id` bigint NOT NULL,
+  `body` varchar(5000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ch_messages`
+--
+
+LOCK TABLES `ch_messages` WRITE;
+/*!40000 ALTER TABLE `ch_messages` DISABLE KEYS */;
+INSERT INTO `ch_messages` VALUES (1658420357,'user',1,2,'dsafads',NULL,1,'2022-04-21 20:39:36','2022-04-21 21:25:08'),(2112251858,'user',1,2,'fds',NULL,1,'2022-04-21 20:31:16','2022-04-21 20:31:16'),(2228565058,'user',1,1,'df',NULL,1,'2022-04-21 20:31:51','2022-04-21 20:31:52'),(2514887409,'user',2,1,'','{\"new_name\":\"519b0d1c-b14f-457d-9dfc-0e80b9e5ab68.png\",\"old_name\":\"\\u4eba\\u8138\\u80fd\\u529b\\u6982\\u89c8_20190619192844.png\"}',1,'2022-04-21 21:25:25','2022-04-21 21:25:25');
+/*!40000 ALTER TABLE `ch_messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -85,7 +142,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +151,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2014_10_12_200000_add_two_factor_columns_to_users_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2019_12_14_000001_create_personal_access_tokens_table',1),(6,'2020_05_21_100000_create_teams_table',1),(7,'2020_05_21_200000_create_team_user_table',1),(8,'2020_05_21_300000_create_team_invitations_table',1),(9,'2022_04_10_103802_create_sessions_table',1),(10,'2022_01_26_003724_create_media_table',2),(11,'2022_04_11_121608_create_pages_table',2);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2014_10_12_200000_add_two_factor_columns_to_users_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2019_12_14_000001_create_personal_access_tokens_table',1),(6,'2020_05_21_100000_create_teams_table',1),(7,'2020_05_21_200000_create_team_user_table',1),(8,'2020_05_21_300000_create_team_invitations_table',1),(9,'2022_04_10_103802_create_sessions_table',1),(10,'2022_01_26_003724_create_media_table',2),(11,'2022_04_11_121608_create_pages_table',2),(12,'0000_00_00_000000_create_websockets_statistics_entries_table',3),(13,'2022_04_22_999999_add_active_status_to_users',4),(14,'2022_04_22_999999_add_avatar_to_users',4),(15,'2022_04_22_999999_add_dark_mode_to_users',4),(16,'2022_04_22_999999_add_messenger_color_to_users',4),(17,'2022_04_22_999999_create_favorites_table',4),(18,'2022_04_22_999999_create_messages_table',4);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +179,7 @@ CREATE TABLE `pages` (
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-INSERT INTO `pages` VALUES (3,'dfdasfdasfasfas','dfdasfdasfasfasssssss','<p><img class=\"image_resized\" style=\"width:67.79%;\" src=\"/storage/2022/04/15/62590cf15dcb4473.jpg\"></p><p>fdsaf</p>','2022-04-11 20:09:41','2022-04-14 22:14:38'),(5,'cxvcaa','cxvcaa','<p>vcxvfdsafdsfstest</p>','2022-04-11 20:49:35','2022-04-14 22:07:30'),(6,'dasfads','dasfadsfdsaf','<p>fsdafasaaaa</p>','2022-04-11 20:50:56','2022-04-11 20:50:56'),(7,'dsfas','dsfasfdsafa','ssssssss','2022-04-11 20:53:39','2022-04-11 20:53:39'),(8,'dd','ddadd','<p>ssssssssaaaaaaaaaaaaaaaaaaa</p>','2022-04-11 20:53:50','2022-04-11 20:53:50'),(9,'测试2','测试2','<p>testfsdf</p>','2022-04-11 23:05:03','2022-04-11 23:05:03'),(10,'afas','afasfdsf','<p>fds</p>','2022-04-14 15:58:22','2022-04-14 15:58:22');
+INSERT INTO `pages` VALUES (3,'dfdasfdasfasfas','dfdasfdasfasfasssssss','<p><img class=\"image_resized\" style=\"width:67.79%;\" src=\"/storage/2022/04/15/62590cf15dcb4473.jpg\"></p><p>fdsaf</p>','2022-04-11 20:09:41','2022-04-14 22:14:38'),(5,'cxvcaa','cxvcaa','<p>vcxvfdsafdsfstest</p>','2022-04-11 20:49:35','2022-04-14 22:07:30'),(6,'dasfads','dasfadsfdsaf','<p>fsdafasaaaa</p>','2022-04-11 20:50:56','2022-04-11 20:50:56'),(7,'dsfas','dsfasfdsafa','<p>new test</p><p>&nbsp;</p>','2022-04-11 20:53:39','2022-04-15 00:18:04'),(8,'dd','ddadd','<p>ssssssssaaaaaaaaaaaaaaaaaaa</p>','2022-04-11 20:53:50','2022-04-11 20:53:50'),(9,'测试2','测试2','<p>testfsdf</p>','2022-04-11 23:05:03','2022-04-11 23:05:03'),(10,'afas','afasfdsf','<p>fds</p>','2022-04-14 15:58:22','2022-04-14 15:58:22');
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +265,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('KOsdhrCXfI6jLwYeypCwRsNf5hVl3Qb2m3V9BI0g',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiR1lJTmNoRE5aV285ZkZPcGNOZEc3RlU2aU5kMGJUZHZkdkdLQ2J5SSI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovL2xpdmV3aXJlbGVhcm4udGVzdC9wYWdlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJFhaWlJSZTlwQWVLTG5BaS5yaUQ0ME94b1VxSEk0LmZVRER5aWJxVDRXaFlib0d3UUJPYnF1Ijt9',1650005347);
+INSERT INTO `sessions` VALUES ('1JEV72ELr55KVj5Yu1rqw2U9bcSVaAkDIqEamuzx',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRGtFTkFrQXNhT3lueUVqNzZyanJZNHd3WXVRdlFNR0tmWjY4R3RDSyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNToiaHR0cDovL2xpdmV3aXJlbGVhcm4udGVzdC9jaGF0aWZ5LzIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRYWlpSUmU5cEFlS0xuQWkucmlENDBPeG9VcUhJNC5mVUREeWlicVQ0V2hZYm9Hd1FCT2JxdSI7fQ==',1650608012),('FjDxW3bFuUIQ4tUg7KL9lj2QEZppFZ4Sppyaajv0',2,'192.168.20.19','Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoieEwxalZCbzQ4eGp5MndLRElNc2tKZkxlNjBVbkRLd3BQOWl1M2l3eSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9saXZld2lyZWxlYXJuLnRlc3QvY2hhdGlmeS8xIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9',1650607546);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,9 +376,13 @@ CREATE TABLE `users` (
   `profile_photo_path` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `active_status` tinyint(1) NOT NULL DEFAULT '0',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
+  `dark_mode` tinyint(1) NOT NULL DEFAULT '0',
+  `messenger_color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#2180f3',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,8 +391,36 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'brucelee','brucelee.drupal@gmail.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'r1YkMhjugXAkqwZ3kjMQFE39M26nl8dSyblqdtWBGBo7vrfeU0RZPEJEMR3f',2,NULL,'2022-04-10 02:44:11','2022-04-10 03:40:48');
+INSERT INTO `users` VALUES (1,'brucelee','brucelee.drupal@gmail.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'i3ZF1YAx63dNiV04XMLTbJaJwakh4hVdPQQAnxyUlmwna4Tharzdd3dJwKbI',2,NULL,'2022-04-10 02:44:11','2022-04-10 03:40:48',0,'brucelee.jpeg',0,'#2180f3'),(2,'customer service','122077550@qq.com',NULL,'$2y$10$XZZRRe9pAeKLnAi.riD40OxoUqHI4.fUDDyibqT4WhYboGwQBObqu',NULL,NULL,NULL,'b3Kq0u6YVG7YIsJKSWWtMvB7ORz8yFBxyztR8jNulNS26D7rRFAjqf0Eq7Nk',2,NULL,'2022-04-10 02:44:11','2022-04-21 22:05:46',1,'brucelee.jpeg',0,'#2180f3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `websockets_statistics_entries`
+--
+
+DROP TABLE IF EXISTS `websockets_statistics_entries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `websockets_statistics_entries` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `app_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `peak_connection_count` int NOT NULL,
+  `websocket_message_count` int NOT NULL,
+  `api_message_count` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `websockets_statistics_entries`
+--
+
+LOCK TABLES `websockets_statistics_entries` WRITE;
+/*!40000 ALTER TABLE `websockets_statistics_entries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `websockets_statistics_entries` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -343,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-15 15:04:00
+-- Dump completed on 2022-04-22 14:14:28
