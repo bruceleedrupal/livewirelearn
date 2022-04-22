@@ -114,72 +114,60 @@
 
             <div class="mt-4">
                 <x-jet-label value="{{ __('Cover') }}" />
-                <div class="rounded-md shadow-sm">
-                    <div class="mt-1 bg-white">
-                        <div class="body-content" wire:ignore>
-                            <x-filepond field="cover_media_id" accept="image/*" />
-                        </div>
-                    </div>
-                </div>
-                @error('cover_media_id')
-                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                @enderror
+                <x-filepond field="cover_media_id" accept="image/*" />
             </div>
+            @error('cover_media_id')
+                <span class="text-red-500 text-xs">{{ $message }}</span>
+            @enderror
+</div>
 
 
 
+<div class="block mt-4">
+    <label for="remember_me" class="flex items-center">
+
+    </label>
+</div>
+</x-slot>
+
+<x-slot name="footer">
+    <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
+        {{ __('NeverMind') }}
+    </x-jet-secondary-button>
+
+    @if ($modelId)
+        <x-jet-danger-button class="ml-3" wire:click="update" wire:loading.attr="disabled">
+            {{ __('Update') }}
+        </x-jet-danger-button>
+    @else
+        <x-jet-danger-button class="ml-3" wire:click="create" wire:loading.attr="disabled">
+            {{ __('Save') }}
+        </x-jet-danger-button>
+    @endif
+</x-slot>
+</x-jet-dialog-modal>
 
 
+<!-- Delete Page Confirmation Modal -->
+<x-jet-dialog-modal wire:model="modalDeleteVisible">
+    <x-slot name="title">
+        {{ __('Delete Page') }}
+    </x-slot>
 
+    <x-slot name="content">
+        {{ __('Are you sure you want to delete this page?') }}
 
+    </x-slot>
 
+    <x-slot name="footer">
+        <x-jet-secondary-button wire:click="$toggle('modalDeleteVisible')" wire:loading.attr="disabled">
+            {{ __('Cancel') }}
+        </x-jet-secondary-button>
 
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-
-                </label>
-            </div>
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
-                {{ __('NeverMind') }}
-            </x-jet-secondary-button>
-
-            @if ($modelId)
-                <x-jet-danger-button class="ml-3" wire:click="update()" wire:loading.attr="disabled">
-                    {{ __('Update') }}
-                </x-jet-danger-button>
-            @else
-                <x-jet-danger-button class="ml-3" wire:click="create" wire:loading.attr="disabled">
-                    {{ __('Save') }}
-                </x-jet-danger-button>
-            @endif
-        </x-slot>
-    </x-jet-dialog-modal>
-
-
-    <!-- Delete Page Confirmation Modal -->
-    <x-jet-dialog-modal wire:model="modalDeleteVisible">
-        <x-slot name="title">
+        <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
             {{ __('Delete Page') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you want to delete this page?') }}
-
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('modalDeleteVisible')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-3" wire:click="delete" wire:loading.attr="disabled">
-                {{ __('Delete Page') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-dialog-modal>
+        </x-jet-danger-button>
+    </x-slot>
+</x-jet-dialog-modal>
 
 </div>

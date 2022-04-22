@@ -15,6 +15,8 @@ class Pages extends Component
 
     public $content;
 
+    public $cover_media_id;
+
     public $modalFormVisible = false;
 
     public $modelId;
@@ -38,6 +40,7 @@ class Pages extends Component
     }
     public function update()
     {
+        dd($this);
         $this->validate();
         $page = Page::find($this->modelId);
         $page->update($this->modelData());
@@ -64,6 +67,7 @@ class Pages extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
             'content' => 'required',
+
         ];
     }
     /**
@@ -76,7 +80,8 @@ class Pages extends Component
         return [
             'title' => $this->title,
             'slug' => $this->slug,
-            'content' => $this->content
+            'content' => $this->content,
+            'cover_media_id' => $this->cover_media_id
         ];
     }
 

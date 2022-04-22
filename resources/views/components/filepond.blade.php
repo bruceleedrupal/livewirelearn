@@ -29,7 +29,7 @@
         if (dataFiles) {
             dataFiles = dataFiles.split('|');
             for (let i = 0; i < dataFiles.length; i++) {
-                files.push({ source: dataFiles[i], options: { type: 'limbo', }, });
+                files.push({ source: dataFiles[i], options: { type: 'limbo' }, });
             }
             pond.addFiles(files);
         }" />
