@@ -21,13 +21,13 @@ class Pages extends Component
 
     public $modelId;
 
+    public $images;
+
     public $modalDeleteVisible = false;
 
     use WithPagination;
 
-    protected $casts = [
-        'cover_media_id' => 'array',
-    ];
+
 
     public function render()
     {
@@ -38,6 +38,7 @@ class Pages extends Component
     public function create()
     {
         $this->validate();
+
         Page::create($this->modelData());
         $this->clearVars();
         $this->modalFormVisible = false;
@@ -85,18 +86,22 @@ class Pages extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
-            'cover_media_id' => $this->cover_media_id
+            'cover_media_id' => $this->cover_media_id,
+            'images' => $this->images
         ];
     }
 
     public function loadModel()
     {
+
         $this->clearValidation();
         $page = Page::find($this->modelId);
+
         $this->title = $page->title;
         $this->slug = $page->slug;
         $this->content = $page->content;
         $this->cover_media_id = $page->cover_media_id;
+        $this->images = $page->images->pluck('id');
         $this->syncEditor();
     }
 
