@@ -25,6 +25,10 @@ class Pages extends Component
 
     use WithPagination;
 
+    protected $casts = [
+        'cover_media_id' => 'array',
+    ];
+
     public function render()
     {
         $data =  Page::paginate(5);
@@ -40,7 +44,7 @@ class Pages extends Component
     }
     public function update()
     {
-        dd($this);
+
         $this->validate();
         $page = Page::find($this->modelId);
         $page->update($this->modelData());
@@ -92,6 +96,7 @@ class Pages extends Component
         $this->title = $page->title;
         $this->slug = $page->slug;
         $this->content = $page->content;
+        $this->cover_media_id = $page->cover_media_id;
         $this->syncEditor();
     }
 
