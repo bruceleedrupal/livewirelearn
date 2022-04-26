@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LivewireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
 use App\Http\Livewire\Frontpage;
@@ -57,3 +58,6 @@ Route::prefix("upload")->group(function () {
     Route::delete("delete", [UploadController::class, "delete"])->name("upload.delete");
     Route::get("upload", [UploadController::class, "upload"])->name("upload.upload");
 });
+
+
+Route::get("livewire", [LivewireController::class, "index"])->name("livewire.index");

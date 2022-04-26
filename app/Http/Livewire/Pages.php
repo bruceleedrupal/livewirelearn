@@ -15,13 +15,19 @@ class Pages extends Component
 
     public $content;
 
+    public $cover_media_id;
+
     public $modalFormVisible = false;
 
     public $modelId;
 
+    public $images;
+
     public $modalDeleteVisible = false;
 
     use WithPagination;
+
+
 
     public function render()
     {
@@ -32,12 +38,14 @@ class Pages extends Component
     public function create()
     {
         $this->validate();
+
         Page::create($this->modelData());
         $this->clearVars();
         $this->modalFormVisible = false;
     }
     public function update()
     {
+
         $this->validate();
         $page = Page::find($this->modelId);
         $page->update($this->modelData());
@@ -64,6 +72,7 @@ class Pages extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
             'content' => 'required',
+
         ];
     }
     /**
@@ -76,17 +85,23 @@ class Pages extends Component
         return [
             'title' => $this->title,
             'slug' => $this->slug,
-            'content' => $this->content
+            'content' => $this->content,
+            'cover_media_id' => $this->cover_media_id,
+            'images' => $this->images
         ];
     }
 
     public function loadModel()
     {
+
         $this->clearValidation();
         $page = Page::find($this->modelId);
+
         $this->title = $page->title;
         $this->slug = $page->slug;
         $this->content = $page->content;
+        $this->cover_media_id = $page->cover_media_id;
+        $this->images = $page->images->pluck('id');
         $this->syncEditor();
     }
 

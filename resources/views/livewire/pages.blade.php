@@ -114,23 +114,19 @@
 
             <div class="mt-4">
                 <x-jet-label value="{{ __('Cover') }}" />
-                <div class="rounded-md shadow-sm">
-                    <div class="mt-1 bg-white">
-                        <div class="body-content" wire:ignore>
-                            <x-filepond field="cover_media_id" accept="image/*" />
-                        </div>
-                    </div>
-                </div>
+                <x-filepond field="cover_media_id" accept="image/*" />
                 @error('cover_media_id')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
-
-
-
-
-
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Images') }}" />
+                <x-filepond field="images" accept="image/*" multiple maxFiles="2" />
+                @error('images')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
 
 
 
@@ -148,7 +144,7 @@
             </x-jet-secondary-button>
 
             @if ($modelId)
-                <x-jet-danger-button class="ml-3" wire:click="update()" wire:loading.attr="disabled">
+                <x-jet-danger-button class="ml-3" wire:click="update" wire:loading.attr="disabled">
                     {{ __('Update') }}
                 </x-jet-danger-button>
             @else
