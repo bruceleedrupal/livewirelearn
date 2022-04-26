@@ -8,7 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+<<<<<<< HEAD
                 @livewire('register')
+=======
+                @livewire("say-hi")
+>>>>>>> d4ae40a51a6006d02a930a7b97bafb8710ad65fa
             </div>
         </div>
     </div>
