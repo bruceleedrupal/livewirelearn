@@ -10,4 +10,9 @@ class LivewireController extends Controller
     {
         return view("livewire.index");
     }
+
+    public function profile()
+    {
+        return view("livewire.profiles");
+    }
 }

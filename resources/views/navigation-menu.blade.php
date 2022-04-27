@@ -22,6 +22,9 @@
                     <x-jet-nav-link href="{{ route('livewire.index') }}" :active="request()->routeIs('livewire.index')">
                         {{ __('Livewire') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('livewire.profile') }}" :active="request()->routeIs('livewire.profile')">
+                        {{ __('Profile') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -167,6 +170,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('livewire.index') }}" :active="request()->routeIs('livewire.index')">
                 {{ __('Livewire') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('livewire.profile') }}" :active="request()->routeIs('livewire.profile')">
+                {{ __('Profile') }}
             </x-jet-responsive-nav-link>
         </div>
 

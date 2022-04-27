@@ -61,3 +61,4 @@ Route::prefix("upload")->group(function () {
 
 
 Route::get("livewire", [LivewireController::class, "index"])->name("livewire.index");
+Route::get("profile", [LivewireController::class, "profile"])->name("livewire.profile");

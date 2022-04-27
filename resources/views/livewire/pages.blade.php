@@ -8,6 +8,8 @@
         <x-jet-button wire:click="createShowModal">
             {{ __('Create') }}
         </x-jet-button>
+
+        <x-input.test />
     </div>
     {{-- The data table --}}
     <div class="flex flex-col">
