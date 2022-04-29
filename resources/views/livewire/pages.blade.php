@@ -105,7 +105,7 @@
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white">
                         <div class="body-content">
-                            <x-ckeditor wire:model.lazy="content" :initialValue="$content" />
+                            <x-ckeditor wire:model="content" />
 
                         </div>
                     </div>
