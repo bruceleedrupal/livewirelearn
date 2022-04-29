@@ -10,15 +10,14 @@
 
     <!-- Fonts -->
 
-
+    @stack('styles')
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
 
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    <script src="/js/ckeditor.js"></script>
-    <script src="/js/uploadAdapter.js"></script>
+    @stack('scripts')
 
     {{-- <script src="/js/admin/ckeditor.js"></script> --}}
     <!-- Scripts -->

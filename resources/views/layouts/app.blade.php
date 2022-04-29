@@ -14,17 +14,18 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    @stack('styles')
     @livewireStyles
 
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    <script src="/js/ckeditor.js"></script>
-    <script src="/js/uploadAdapter.js"></script>
+    
     {{-- <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script> --}}
 
     {{-- <script src="/js/admin/ckeditor.js"></script> --}}
     <!-- Scripts -->
+    @stack('scripts')
 </head>
 
 <body class="font-sans antialiased">

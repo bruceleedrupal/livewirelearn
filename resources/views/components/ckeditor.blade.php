@@ -1,3 +1,9 @@
+@pushOnce('scripts')
+<script src="/package/ckeditor/ckeditor.js"></script>
+<script src="/package/ckeditor/uploadAdapter.js"></script>
+
+@endPushOnce
+
 <div wire:ignore>
     <textarea @if($attributes->get('wire:model')) x-data="{ value: @entangle($attributes->wire('model')).defer }" @endif x-init="ClassicEditor.create($el, { extraPlugins: [UploadAdapterPlugin] })
         .then(function(editor) {

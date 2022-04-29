@@ -1,3 +1,23 @@
+@pushOnce('scripts')
+<script src="/package/filepond/filepond-plugin-image-preview.js"></script>
+<script src="/package/filepond/filepond-plugin-file-validate-type.js"></script>
+<script src="/package/filepond/zh-cn.js"></script>
+<script src="/package/filepond/filepond.js"></script>
+<script>
+    // Register the plugin
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.registerPlugin(FilePondPluginFileValidateType);
+    FilePond.setOptions(filepond_zh_cn);
+</script>
+@endPushOnce
+
+@pushOnce('styles')
+<link href="/package/filepond/filepond.css" rel="stylesheet" />
+<link href="/package/filepond/filepond-plugin-image-preview.css" rel="stylesheet" />
+@endPushOnce
+
+
+
 @props(['field'])
 <div>
     <input x-data="{ {{ $field }}: @entangle($field).defer }" x-cloak {!! $attributes !!} x-init="() => {
