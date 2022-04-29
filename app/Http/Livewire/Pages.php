@@ -37,6 +37,7 @@ class Pages extends Component
 
     public function create()
     {
+
         $this->validate();
 
         Page::create($this->modelData());
@@ -45,6 +46,7 @@ class Pages extends Component
     }
     public function update()
     {
+
 
         $this->validate();
         $page = Page::find($this->modelId);
@@ -117,7 +119,7 @@ class Pages extends Component
 
     protected function syncEditor()
     {
-        $this->emit('sync-content');
+         $this->dispatchBrowserEvent("sync");
     }
 
     public function updateShowModal($id)

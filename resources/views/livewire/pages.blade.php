@@ -9,7 +9,7 @@
             {{ __('Create') }}
         </x-jet-button>
 
-        <x-input.test />
+
     </div>
     {{-- The data table --}}
     <div class="flex flex-col">
@@ -104,8 +104,9 @@
                 <x-jet-label value="{{ __('Content') }}" />
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white">
-                        <div class="body-content" wire:ignore>
-                            <x-ckeditor field="content" />
+                        <div class="body-content">
+                            <x-ckeditor wire:model.lazy="content" :initialValue="$content" />
+
                         </div>
                     </div>
                 </div>
@@ -113,6 +114,9 @@
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
+
+
+
 
             <div class="mt-4">
                 <x-jet-label value="{{ __('Cover') }}" />

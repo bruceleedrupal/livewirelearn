@@ -4,6 +4,8 @@ use App\Http\Controllers\LivewireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
 use App\Http\Livewire\Frontpage;
+use App\Http\Livewire\Test;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +64,5 @@ Route::prefix("upload")->group(function () {
 
 Route::get("livewire", [LivewireController::class, "index"])->name("livewire.index");
 Route::get("profile", [LivewireController::class, "profile"])->name("livewire.profile");
+
+Route::get("livewiretest", Test::class)->name("livewire.test");
