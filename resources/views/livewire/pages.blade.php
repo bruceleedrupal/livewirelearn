@@ -120,7 +120,7 @@
 
             <div class="mt-4">
                 <x-jet-label value="{{ __('Cover') }}" />
-                <x-filepond field="cover_media_id" accept="image/*" />
+                <x-filepond wire:model="cover_media_id" accept="image/*" />
                 @error('cover_media_id')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
@@ -128,7 +128,7 @@
 
             <div class="mt-4">
                 <x-jet-label value="{{ __('Images') }}" />
-                <x-filepond field="images" accept="image/*" multiple maxFiles="2" />
+                <x-filepond wire:model="images" accept="image/*" multiple maxFiles="2" />
                 @error('images')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror

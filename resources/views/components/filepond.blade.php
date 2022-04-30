@@ -18,17 +18,14 @@
 
 
 
-@props(['field'])
-<div>
-    <input x-data="{ {{ $field }}: @entangle($field).defer }" x-cloak {!! $attributes !!} x-init="() => {
-        let headers = { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content };
-    
+
+
+<div wire:ignore>
+    <input x-data="{ value : @entangle($attributes->wire('model')).defer }" x-cloak {{ $attributes->whereDoesntStartWith('wire:model') }} x-init="() => {       
+        let headers = { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content };    
         if ($el.hasAttribute('data-private')) {
             headers['X-DATA-PRIVATE'] = 1;
-        }
-    
-    
-    
+        } 
     
         let processUrl = './file';
     
@@ -50,33 +47,33 @@
                 headers: headers,
             },
             onprocessfiles: () => {
-                if (Array.isArray({{ $field }})) {
-                    {{ $field }} = [];
+                if (Array.isArray(value)) {
+                    value = [];
                     for (let i = 0; i < pond.getFiles().length; i++) {
                         file = pond.getFiles()[i];
-                        {{ $field }}.push(file.serverId);
+                        value.push(file.serverId);
                     }
                 } else {
                     if (pond.getFiles().length) {
                         file = pond.getFiles()[0];
-                        {{ $field }} = file.serverId;
+                        value = file.serverId;
                     } else
-                        {{ $field }} = null;
+                         value = null;
                 };
             },
             onremovefile: () => {
-                if (Array.isArray({{ $field }})) {
-                    {{ $field }} = [];
+                if (Array.isArray(value)) {
+                    value = [];
                     for (let i = 0; i < pond.getFiles().length; i++) {
                         file = pond.getFiles()[i];
-                        {{ $field }}.push(file.serverId);
+                        value.push(file.serverId);
                     }
                 } else {
                     if (pond.getFiles().length) {
                         file = pond.getFiles()[0];
-                        {{ $field }} = file.serverId;
+                        value = file.serverId;
                     } else
-                        {{ $field }} = null;
+                    value = null;
                 };
             },
     
@@ -84,30 +81,38 @@
     
             oninit: () => {
                 files = [];
-                if (Array.isArray({{ $field }})) {
-                    for (let i = 0; i < {{ $field }}.length; i++) {
-                        files.push({ source: {{ $field }}[i], options: { type: 'limbo' } });
+                if (Array.isArray(value)) {
+                    for (let i = 0; i < value.length; i++) {
+                        files.push({ source: value[i], options: { type: 'limbo' } });
                     }
-                } else if ({{ $field }})
-                    files.push({ source: {{ $field }}, options: { type: 'limbo' } });
-    
+                } else if (value)
+                    files.push({ source: value, options: { type: 'limbo' } });
+                pond.removeFiles();
                 pond.addFiles(files);
             }
+        });
+
+        window.addEventListener('sync',(event)=>{
+            
+                files = [];                
+                if (Array.isArray(value)) {
+                    for (let i = 0; i < value.length; i++) {
+                        files.push({ source: value[i], options: { type: 'limbo' } });
+                    }
+                } else if (value)
+                    files.push({ source: value, options: { type: 'limbo' } });
+    
+                
+                pond.removeFiles();
+                pond.addFiles(files);
+                
+            
         });
     
         if ($el.hasAttribute('maxFiles')) {
             pond.setOptions({
                 maxFiles: $el.getAttribute('maxFiles')
             });
-        }
-    
-    
-    
-    
-    
-    
-    
+        }    
     }" />
-
-
 </div>

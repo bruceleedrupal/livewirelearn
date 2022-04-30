@@ -22,6 +22,6 @@
         })
         .catch(error => {
             console.error(error);
-        });" @if($attributes->get('wire:model')) x-bind:value="value" @endif>
+        });" @if($attributes->get('wire:model')) x-bind:value="value" @endif {{ $attributes->whereDoesntStartWith('wire:model') }}>
     </textarea>
 </div>

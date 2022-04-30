@@ -21,7 +21,7 @@ class Pages extends Component
 
     public $modelId;
 
-    public $images;
+    public $images=[];
 
     public $modalDeleteVisible = false;
 
@@ -41,6 +41,7 @@ class Pages extends Component
         $this->validate();
 
         Page::create($this->modelData());
+        $this->updateRelated($page);
         $this->clearVars();
         $this->modalFormVisible = false;
     }
@@ -51,6 +52,7 @@ class Pages extends Component
         $this->validate();
         $page = Page::find($this->modelId);
         $page->update($this->modelData());
+        $this->updateRelated($page);
         $this->clearVars();
         $this->modalFormVisible = false;
     }
@@ -157,5 +159,11 @@ class Pages extends Component
             'eventName' => 'Sample Event',
             'eventMessage' => 'Message',
         ]);
+    }
+
+    private function updateRelated($page)
+    {
+        $images = $this->images;        
+        $page->images()->sync($images);
     }
 }
