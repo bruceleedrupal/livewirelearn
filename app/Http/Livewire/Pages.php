@@ -40,7 +40,7 @@ class Pages extends Component
 
         $this->validate();
 
-        Page::create($this->modelData());
+        $page = Page::create($this->modelData());
         $this->updateRelated($page);
         $this->clearVars();
         $this->modalFormVisible = false;

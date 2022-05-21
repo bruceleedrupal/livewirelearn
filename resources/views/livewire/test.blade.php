@@ -1,9 +1,8 @@
 <div>
 
 
-    <x-input.test wire:model="count" />
-    {{ $count }}
-
+    <x-input.fileupload wire:model="image" />
+ 
 
 
 </div>
