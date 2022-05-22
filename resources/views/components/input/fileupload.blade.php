@@ -12,33 +12,30 @@
   <link href="/asset/filepond/filepond-plugin-image-preview.css" rel="stylesheet" />      
 @endPushOnce
 
-
+<div x-data="{ count: 0 }" x-init="count++">
+    <span x-text="count"></span>
+    <button @click="count++">Add</button>
+</div>
 <div
   x-data
-  x-on:remove-images.window="Pond.removeFiles()"
+  x-on:remove-images="Pond.removeFiles()"
   x-init="
     FilePond.registerPlugin(FilePondPluginImagePreview)
     FilePond.registerPlugin(FilePondPluginFileValidateSize)
     FilePond.registerPlugin(FilePondPluginFileValidateType);
     FilePond.setOptions(filepond_zh_CN);
 
-    
-    let headers = { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content };
-    headers['disk'] = '{{ isset($attributes['disk']) ? $attributes['disk'] : 'public' }}'  
-    headers['collection'] = '{{ isset($attributes['collection']) ? $attributes['collection'] : '' }}'  
-    processUrl = '{{ isset($attributes['accept']) && $attributes['accept']=='images/*' ? './image': './file' }}'  
-   
-
     FilePond.setOptions({
         acceptedFileTypes: @if(is_array($filetypes)) {{ json_encode($filetypes, true) }} @else ['{{ $filetypes }}'] @endif,
         imagePreviewHeight: 100,
         maxFileSize: 'Number({{ max_upload_filesize() }}) * 1000',
-        allowMultiple: {{ isset($attributes['multiple']) ? 'true' : 'false' }},
-        chunkUploads: true,
-        chunkSize: 2000000,
+        allowMultiple: {{ isset($attributes['multiple']) ? 'true' : 'false' }},        
         onprocessfile: (error, file) => {
           if (!error) {
+            console.log(Pond.getFiles());
             Pond.removeFile(file.id)
+            console.log(file.id)
+            
           }
         },
         server: {
@@ -51,7 +48,8 @@
       },
 
     });
-    Pond = FilePond.create($refs.input)
+    if(Pond is defined) console.log(Pond);
+    Pond = FilePond.create($refs.input);
 
     this.addEventListener('pondReset', e => {
         Pond.removeFiles();

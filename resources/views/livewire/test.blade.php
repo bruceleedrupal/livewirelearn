@@ -1,8 +1,10 @@
-<div>
-
-
-    <x-input.fileupload wire:model="image" />
- 
-
-
+<div> 
+    
+    <div>
+        @livewire('uploada')
+    </div>
+    <div>
+        @livewire('uploada')
+    </div>
+    
 </div>
