@@ -1,10 +1,10 @@
 <div> 
     
     <div>
-        @livewire('uploada')
+        @livewire('uploada',['model'=>$model])
     </div>
     <div>
-        @livewire('uploada')
+        @livewire('uploadb')
     </div>
     
 </div>

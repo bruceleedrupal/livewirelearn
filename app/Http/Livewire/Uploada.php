@@ -9,8 +9,12 @@ use App\Http\Livewire\Trait\WithFileUploads;
 class Uploada extends Component
 {
     use WithFileUploads;
+    public $model;
+
     public function render()
     {
+        dump($this->model->title);
+        
         return view('livewire.uploada');
     }
 
