@@ -6,6 +6,13 @@ trait WithFileUploads {
     use WithFileUploadsBase;
     public $file;
 
+    public function getRules() {
+        return [
+            'model.id'=>'',            
+            'model.title'=>'',            
+        ];
+    }
+
     public function handleUploadFinished($name,$filename){       
        $this->file->store('photos');
     }

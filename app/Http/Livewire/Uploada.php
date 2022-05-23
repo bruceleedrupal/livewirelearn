@@ -11,10 +11,15 @@ class Uploada extends Component
     use WithFileUploads;
     public $model;
 
-    public function render()
+    public function getListeners()
     {
-        dump($this->model->title);
-        
+        return [
+            'uploada:save'=>'save'
+        ];
+    }
+
+    public function render()
+    {       
         return view('livewire.uploada');
     }
 
@@ -24,4 +29,10 @@ class Uploada extends Component
          'collection'=>'b'
         ];
      }
+
+     public function save(){
+        
+        dd($this->model->title);
+     }
+    
 }

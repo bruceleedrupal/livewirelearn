@@ -19,5 +19,7 @@ class Test extends Component
     {
         return view('livewire.test');
     }
-    
+    public function save(){
+        $this->emit('uploada:save');
+    }
 }
