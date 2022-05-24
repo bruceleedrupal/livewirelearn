@@ -1,9 +1,10 @@
-<div>
-
-
-    <x-input.test wire:model="count" />
-    {{ $count }}
-
-
-
+<div> 
+    
+    <div>
+        @livewire('uploada',['model'=>$model])
+    </div>
+    <div>
+        @livewire('uploadb')
+    </div>
+    
 </div>

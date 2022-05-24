@@ -4,14 +4,22 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
+use App\Models\Page;
+
 class Test extends Component
 {
+       public $model ;
 
-    public $count = '1/4/2022';
-    public $count2 = '1/4/2022';
+       public function mount(){
+           $this->model = new Page;
+           $this->model->title = "test title";
+       }
 
-    public function render()
+       public function render()
     {
         return view('livewire.test');
+    }
+    public function save(){
+        $this->emit('uploada:save');
     }
 }
